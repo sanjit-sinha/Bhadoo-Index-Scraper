@@ -46,7 +46,7 @@ def func(payload_input, url, username, password):
         files_name   = decrypted_response["data"]["files"][i]["name"] 
       
 
-        if files_type == "application/vnd.google-apps.foldr": pass
+        if files_type == "application/vnd.google-apps.folder": pass
         else:
             direct_download_link = url + urllib.parse.quote(files_name)
             result += f"• {files_name}:-\n{direct_download_link}\n\n"      
