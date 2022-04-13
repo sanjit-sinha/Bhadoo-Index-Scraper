@@ -43,7 +43,7 @@ def func(payload_input, url, username, password):
     for i, _ in enumerate(range(file_length)):
        
         files_type   = decrypted_response["data"]["files"][i]["mimeType"] 
-        files_name = decrypted_response["data"]["files"][i]["name"] 
+        files_name   = decrypted_response["data"]["files"][i]["name"] 
       
 
         if files_type == "application/vnd.google-apps.foldr": pass
@@ -66,7 +66,7 @@ def main(url, username="none", password="none"):
 		
 
 index_link ="https://www.suup.workers.dev/2:/[Judas]%20Webrip%20batches/[Judas]%20100-man%20no%20Inochi%20no%20Ue%20ni%20Ore%20wa%20Tatteiru%20(Season%201)%20[1080p][HEVC%20x265%2010bit][Multi-Subs]/"
-username = "username-default"
-password ="password-default"
+username = "username-default" #optional
+password ="password-default"  #optional
 				
 main(url=index_link, username=username, password=password)
