@@ -19,8 +19,10 @@ def decrypt(string):
   
 def func(payload_input, url, username, password): 
     global next_page 
-    global next_page_token 
+    global next_page_token
     
+    url = url + "/" if  url[-1] != '/' else url
+         
     try: headers = {"authorization":authorization_token(username,password)}
     except: return "username/password combination is wrong"
  
@@ -39,20 +41,23 @@ def func(payload_input, url, username, password):
    
      
     result = ""
-    file_length = len(decrypted_response["data"]["files"]) 
-    for i, _ in enumerate(range(file_length)):
-       
-        files_type   = decrypted_response["data"]["files"][i]["mimeType"] 
-        files_name   = decrypted_response["data"]["files"][i]["name"] 
-      
-
-        if files_type == "application/vnd.google-apps.folder": pass
-        else:
-            direct_download_link = url + urllib.parse.quote(files_name)
-            result += f"• {files_name}:-\n{direct_download_link}\n\n"      
-    return result
-        
-
+   
+    if list(decrypted_response.get("data").keys())[0] == "error": pass
+    else :
+      file_length = len(decrypted_response["data"]["files"])
+      for i, _ in enumerate(range(file_length)):
+	       
+	        files_type   = decrypted_response["data"]["files"][i]["mimeType"] 
+	        files_name   = decrypted_response["data"]["files"][i]["name"] 
+	      
+	
+	        if files_type == "application/vnd.google-apps.folder": pass
+	        else:
+	            direct_download_link = url + urllib.parse.quote(files_name)
+	            result += f"• {files_name}:-\n{direct_download_link}\n\n"
+      return result
+	        
+	
 def main(url, username="none", password="none"):
 	x = 0
 	payload = {"page_token":next_page_token, "page_index": x}	
@@ -65,7 +70,7 @@ def main(url, username="none", password="none"):
 		x += 1
 		
 
-index_link ="http://index.gokumui7.in/0:/%20[Kayoanime]%2086%20(Eighty%20Six)%20(Season%202)%20[1080p][HEVC%20x265%2010bit][Dual-Audio][Multi-Subs]%20(Weekly)/"
+index_link = "https://anime.anipirates.workers.dev/0:/Breaking%20Bad%20(2008)%20Season%201-5%20S01-S05%20(1080p%20BluRay%20x265%20HEVC%2010bit%20AAC%205.1%20Silence)/Season%201/"
 username = "username-default" #optional
 password ="password-default"  #optional
 				
